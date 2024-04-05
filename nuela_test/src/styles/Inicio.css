@@ -1,0 +1,245 @@
+.inicio {
+  margin: 0;
+  position: absolute;
+  left: 250px;
+  width: calc(100% - 250px);
+  background-color: #fafafa;
+}
+
+.text_Profesores {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text_Crea_Y_Gestiona {
+  color: #0000009f;
+  font-weight: normal;
+  font-size: 16px;
+  margin: 0;
+}
+
+.linea-gris {
+  border: none;
+  border-top: 2px solid #ccccccd0;
+  margin: 20px 0;
+  margin-right: 85px;
+}
+.profesor-logo {
+  width: 120px;
+}
+
+.info-profesor {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+.parrafosInfo {
+  display: flex;
+  align-items: center;
+}
+
+.parrafos-contenedor {
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+.profesor-nombre {
+  font-size: 30px;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.email-link {
+  color: #0000009f;
+  font-family: inherit;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.tlf {
+  color: #0000009f;
+  font-weight: normal;
+}
+
+.editar-button {
+  top: 20%;
+  left: 28%;
+  position: absolute;
+  width: fit-content;
+  background-color: transparent;
+  color: #635bff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-left: 64%;
+}
+
+.editar-button:hover {
+  background-color: #f3f1f1;
+}
+
+.btn-custom {
+  margin: 5px;
+  width: 300px;
+  height: 45px;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 270px;
+  height: 50px;
+  background-color: #f3f1f1;
+  border-radius: 10px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 5px;
+  margin-left: 625px;
+}
+
+#cardsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 40px;
+  background-color: transparent;
+}
+
+#cardsContainer > .row {
+  flex-wrap: nowrap;
+}
+
+#cardsContainer > .row > .col {
+  flex: 0 0 auto;
+  width: 510px;
+  margin-right: 10px;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  width: 450px;
+  height: 120px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.card-text {
+  font-size: 40px;
+}
+
+.containerTipoHoras {
+  display: flex;
+  border-radius: none;
+}
+
+.containerTipoHoras button {
+  font-weight: bold;
+  margin: 5px;
+  width: 200px;
+  height: 45px;
+  border-color: #635bff;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.boton-añadir-asignatura {
+  margin-top: 20px;
+  margin-left: 1314px;
+  width: fit-content;
+  background-color: #635bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: medium;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.icono-plus {
+  width: 12.5px;
+  margin-right: 10px;
+}
+
+.icono-plus {
+  width: 12.5px;
+  margin-right: 10px;
+}
+
+.mi-tabla {
+  margin-top: 20px;
+  border-color: transparent;
+  width: 94.2%; /* Ajusta el ancho de la tabla */
+  border-collapse: collapse; /* Combina los bordes de las celdas */
+}
+
+.mi-tabla th,
+.mi-tabla td {
+  background-color: white; /* Fondo de las filas */
+  color: black; /* Texto negro */
+  border: none; /* Elimina los bordes entre las celdas */
+  padding: 10px; /* Espaciado interno */
+}
+
+.mi-tabla tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.mi-tabla tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+.mi-tabla th {
+  font-weight: normal;
+  color: #6c757d;
+  background-color: #f3f1f1; /* Fondo gris de las columnas */
+}
+
+.mi-tabla td {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.726);
+}
+
+.thStart {
+  border-top-left-radius: 10px; /* Borde redondeado superior derecho */
+}
+.thFinal {
+  border-top-right-radius: 10px; /* Borde redondeado superior derecho */
+}
+
+.mi-tabla .btn-ver {
+  color: #635bff;
+  background-color: transparent;
+  border: none;
+}
+
+.mi-tabla .btn-editar {
+  color: #635bff;
+  background-color: transparent;
+  border: none;
+}
+
+.mi-tabla .btn-eliminar {
+  color: red;
+  background-color: transparent;
+  border: none;
+}
+
+.mi-tabla .btn-eliminar:hover,
+.mi-tabla .btn-editar:hover,
+.mi-tabla .btn-ver:hover {
+  background-color: #f3f1f1;
+}

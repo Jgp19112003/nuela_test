@@ -1,0 +1,47 @@
+.select-container {
+  position: relative;
+}
+
+.select-icon {
+  position: absolute;
+  right: 15px; /* Ajusta el valor según sea necesario */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px; /* Tamaño deseado de la imagen */
+  height: auto;
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.form-label {
+  margin-top: 15px;
+  font-weight: lighter;
+  font-size: 13px;
+}
+
+.modal-body button {
+  margin-left: 20pc;
+  height: 40px;
+  margin-top: 20px;
+  background-color: #635bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+.modal-body button:hover {
+  background-color: #635bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.alert-danger {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}

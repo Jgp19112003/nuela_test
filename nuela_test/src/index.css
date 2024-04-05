@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "TT Interphases Pro";
+  src: url("./fonts/TT Interphases Pro Trial Bold.ttf");
+  font-weight: bold;
+  font-style: bold;
+}
+@font-face {
+  font-family: "TT Interphases Pro";
+  src: url("./fonts/TT Interphases Pro Trial Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "TT Interphases Pro";
+  src: url("./fonts/TT Interphases Pro Trial Medium.ttf");
+  font-weight: medium;
+  font-style: medium;
+}
+@font-face {
+  font-family: "TT Interphases Pro";
+  src: url("./fonts/TT Interphases Pro Trial Light.ttf");
+  font-weight: lighter;
+  font-style: lighter;
+}
