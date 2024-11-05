@@ -1,0 +1,164 @@
+body {
+  background-color: #fafafa; /* Consistent background color */
+}
+
+.horarios {
+  margin: 0;
+  position: absolute;
+  left: 250px;
+  width: calc(100% - 250px);
+  background-color: #fafafa;
+}
+
+.info-horarios {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.text_Horarios {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text_Crea_Y_Gestiona {
+  color: #0000009f;
+  font-weight: normal;
+  font-size: 16px;
+  margin: 0;
+}
+
+.linea-gris {
+  border: none;
+  border-top: 2px solid #ccccccd0;
+  margin: 20px 0;
+  margin-right: 85px;
+}
+
+.profesor-logo {
+  width: 120px;
+}
+
+.parrafosInfo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.parrafos-contenedor {
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+
+.profesor-nombre {
+  font-size: 30px;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.email-link {
+  color: #0000009f;
+  font-family: inherit;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.tlf {
+  color: #0000009f;
+  font-weight: normal;
+}
+
+.boton-container {
+  display: flex;
+  justify-content: flex-start; /* Coloca ambos botones a la izquierda */
+  align-items: right; /* Alinea verticalmente los botones */
+  margin-top: 20px; /* Espaciado opcional */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+}
+
+.boton-añadir-horario {
+  position: absolute;
+  left: 83.7%;
+  margin-right: 20px; /* Espacio reducido a la derecha del botón "Añadir Evento" */
+  width: fit-content; /* Ajusta el ancho según el contenido */
+  background-color: #635bff; /* Color original del botón */
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Espaciado mejorado para un diseño más cómodo */
+  font-weight: 600; /* Aumentar el grosor de la fuente para mejor legibilidad */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2); /* Sombra sutil para un efecto de elevación */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves para color y escala */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse */
+.boton-añadir-horario:hover {
+  background-color: #4c44c9; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Agranda ligeramente el botón */
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4); /* Aumenta la sombra para un efecto de "elevación" */
+}
+
+/* Efecto de activación */
+.boton-añadir-horario:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra al hacer clic */
+}
+
+/* Estilo del icono */
+.icono-plus {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  transition: filter 0.2s ease; /* Suaviza la transición del icono */
+}
+
+/* Efecto en el icono al pasar el mouse */
+.boton-añadir-horario:hover .icono-plus {
+  filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
+}
+
+.sx-react-calendar-wrapper {
+  margin-left: 80px;
+  margin-top: 30px;
+  width: 90%;
+  height: 820px;
+  margin-bottom: 100px;
+}
+
+.bin-button {
+  position: absolute;
+  left: 0;
+  margin-right: 81%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background-color: rgb(255, 95, 95);
+  cursor: pointer;
+  border: 3px solid rgb(255, 201, 201);
+  transition-duration: 0.3s;
+}
+
+.bin-bottom {
+  width: 15px;
+}
+.bin-top {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+}
+.bin-button:hover .bin-top {
+  transform: rotate(45deg);
+}
+.bin-button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.bin-button:active {
+  transform: scale(0.9);
+}

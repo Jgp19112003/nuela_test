@@ -1,27 +1,86 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, Col, Row, Table, Button } from "react-bootstrap";
 import "../styles/Inicio.css";
 import imgMM from "../images/MM.png";
+import flecha from "../images/flecha-icono.png";
 import plusIcono from "../images/plus.png";
 import FormularioAgregarAsignatura from "./FormularioAgregarAsignatura";
 import { Asignatura } from "../interfaces/Asignatura";
-import axios from "axios";
+import Popup from "./Popup";
+import { Profesor } from "../interfaces/Profesor";
 
 const Inicio = () => {
-  const [modoSemanal, setModoSemanal] = useState(true);
-
-  const [modoLectivas, setModoLectivas] = useState(true);
-
+  // Declaraciones de estado
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [totalHoras, setTotalHoras] = useState(() => {
+    const storedTotal = localStorage.getItem("totalHoras");
+    return storedTotal ? JSON.parse(storedTotal) : 0; // Valor por defecto en 0 si no existe
+  });
+  const [emailUsuario] = useState<string>("");
+  const [modoSemanal, setModoSemanal] = useState(() => {
+    const storedModo = localStorage.getItem("modoSemanal");
+    return storedModo ? JSON.parse(storedModo) : true; // Valor por defecto en true
+  });
   const [asignaturas, setAsignaturas] = useState<Asignatura[]>(() => {
     const storedAsignaturas = localStorage.getItem("asignaturas");
     return storedAsignaturas ? JSON.parse(storedAsignaturas) : [];
   });
-  const [totalHoras, setTotalHoras] = useState<number>(0);
-  const [nombreUsuario, setNombreUsuario] = useState<string>("");
-  const [emailUsuario, setEmailUsuario] = useState<string>("");
-  const [telefonoUsuario, setTelefonoUsuario] = useState<string>("");
+  const botonSemanalRef = useRef<HTMLButtonElement | null>(null);
 
+  const [profesores, setProfesores] = useState<Profesor[]>(() => {
+    const storedProfesores = localStorage.getItem("profesores");
+    return storedProfesores
+      ? JSON.parse(storedProfesores)
+      : [
+          {
+            id: 1,
+            nombre: "Juan",
+            apellido: "Pérez",
+            segundoApellido: "Gómez",
+            fechaNacimiento: "1980-05-15",
+            telefono: 645893175,
+            email: "juanperez@gmail.com",
+            asignaturas: [],
+            eventos: [
+              {
+                id: "1",
+                title: "Matemáticas",
+                start: "2024-11-05 08:00",
+                end: "2024-11-05 09:00",
+              },
+            ],
+            especialidad: "Matemáticas",
+            evaluacion: 8.5,
+            logo: imgMM,
+          },
+          {
+            id: 2,
+            nombre: "Ana",
+            apellido: "Gómez",
+            segundoApellido: "Hernández",
+            fechaNacimiento: "1985-08-20",
+            telefono: 645893175,
+            email: "anagomez@gmail.com",
+            asignaturas: [],
+            eventos: [
+              /*  {
+                id: "1",
+                title: "Lengua",
+                start: "2024-11-05 08:00",
+                end: "2024-11-05 09:00",
+              }, */
+            ],
+            especialidad: "Ciencias Naturales",
+            evaluacion: 9.0,
+            logo: imgMM,
+          },
+        ];
+  });
+  const [profesorSeleccionado, setProfesorSeleccionado] =
+    useState<Profesor | null>(null);
+  const [mostrarPopup, setMostrarPopup] = useState<boolean>(false);
+
+  // Definiciones de columnas para la tabla
   const columnas = [
     ["Matemáticas", "Física", "Química"],
     ["Obligatoria", "Optativa"],
@@ -31,48 +90,43 @@ const Inicio = () => {
     ["1º Bach - Grupo A", "1º Bach - Grupo B", "2º Bach - Grupo A"],
   ];
 
-  const obtenerDatosUsuarioAleatorio = async () => {
-    try {
-      const respuesta = await axios.get("https://randomuser.me/api/?results=1");
-      const usuario = respuesta.data.results[0];
-      setNombreUsuario(
-        `${usuario.name.title} ${usuario.name.first} ${usuario.name.last}`
-      );
-      setEmailUsuario(usuario.email);
-      setTelefonoUsuario(usuario.phone);
-    } catch (error) {
-      console.error("Error al obtener datos del usuario:", error);
+  useEffect(() => {
+    localStorage.setItem("profesores", JSON.stringify(profesores)); // Guardar estado de profesores
+  }, [profesores]);
+
+  useEffect(() => {
+    localStorage.setItem("modoSemanal", JSON.stringify(modoSemanal)); // Guardar estado del modo
+  }, [modoSemanal]);
+
+  // Efecto para recuperar profesorSeleccionado de localStorage
+  useEffect(() => {
+    const profesorGuardado = localStorage.getItem("profesorSeleccionado");
+    if (profesorGuardado) {
+      setProfesorSeleccionado(JSON.parse(profesorGuardado));
     }
-  };
-
-  useEffect(() => {
-    setModoSemanal(false);
-    calcularTotalHoras();
-    localStorage.setItem("asignaturas", JSON.stringify(asignaturas));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [asignaturas]);
-
-  useEffect(() => {
-    obtenerDatosUsuarioAleatorio();
   }, []);
+
+  // Funciones para calcular total de horas
   const calcularTotalHoras = () => {
     let total = 0;
-    asignaturas.forEach((asignatura) => {
-      // Verificar si el modo es semanal o anual y sumar las horas correspondientes
+    if (profesorSeleccionado) {
+      profesorSeleccionado.asignaturas.forEach((asignatura) => {
+        // Asegúrate de que la propiedad horaSemanal sea válida
+        if (asignatura.horaSemanal) {
+          total += parseFloat(asignatura.horaSemanal.replace(",", "."));
+        }
+      });
+
       if (modoSemanal) {
-        total += parseFloat(asignatura.horaSemanal.replace(",", "."));
-      } else {
-        // Convertir las horas semanales a horas anuales
-        total += parseFloat(asignatura.horaSemanal.replace(",", ".")) * 52; // 52 semanas en un año
+        total *= 52; // Multiplicar por 52 si está en modo anual
       }
-    });
+    }
     setTotalHoras(total);
+    // Guardar en localStorage
+    localStorage.setItem("totalHoras", JSON.stringify(total));
   };
 
-  const handleSwitch = () => {
-    calcularTotalHoras();
-  };
-
+  // Funciones para manejar la visibilidad del formulario
   const mostrarFormularioAgregarAsignatura = () => {
     setMostrarFormulario(true);
   };
@@ -82,14 +136,93 @@ const Inicio = () => {
   };
 
   const handleAgregarAsignatura = (asignatura: Asignatura) => {
-    setAsignaturas([...asignaturas, asignatura]);
+    // Actualizar el estado de asignaturas globalmente
+    setAsignaturas((prevAsignaturas) => {
+      const nuevasAsignaturas = [...prevAsignaturas, asignatura];
+
+      // Guardar las nuevas asignaturas en localStorage
+      localStorage.setItem("asignaturas", JSON.stringify(nuevasAsignaturas));
+
+      return nuevasAsignaturas; // Retornar las nuevas asignaturas
+    });
+
+    if (profesorSeleccionado) {
+      // Agregar la asignatura al profesor seleccionado
+      const nuevoProfesor = { ...profesorSeleccionado };
+      nuevoProfesor.asignaturas.push(asignatura);
+
+      // Actualizar la lista de profesores con el profesor actualizado
+      setProfesores((prevProfesores) =>
+        prevProfesores.map((profesor) =>
+          profesor.id === nuevoProfesor.id ? nuevoProfesor : profesor
+        )
+      );
+    }
+    if (botonSemanalRef.current) {
+      botonSemanalRef.current.click(); // Asegúrate de que sea una función
+    }
   };
 
   const handleEliminarAsignatura = (index: number) => {
-    const nuevasAsignaturas = [...asignaturas];
-    nuevasAsignaturas.splice(index, 1);
-    setAsignaturas(nuevasAsignaturas);
+    if (profesorSeleccionado) {
+      const nuevoProfesor = { ...profesorSeleccionado };
+      const asignaturaEliminada = nuevoProfesor.asignaturas[index];
+
+      // Verificamos que la asignatura a eliminar existe
+      if (asignaturaEliminada) {
+        nuevoProfesor.asignaturas.splice(index, 1);
+
+        // Actualizamos el estado de los profesores
+        setProfesores((prevProfesores) => {
+          const nuevosProfesores = prevProfesores.map((profesor) =>
+            profesor.id === nuevoProfesor.id ? nuevoProfesor : profesor
+          );
+
+          // Guardamos en localStorage solo después de actualizar el estado
+          localStorage.setItem("profesores", JSON.stringify(nuevosProfesores));
+          return nuevosProfesores; // Retornamos la nueva lista de profesores
+        });
+
+        // Actualizamos el estado de asignaturas
+        setAsignaturas((prevAsignaturas) => {
+          const nuevasAsignaturas = prevAsignaturas.filter(
+            (_, i) => i !== index
+          );
+
+          // Guardar las nuevas asignaturas en localStorage
+          localStorage.setItem(
+            "asignaturas",
+            JSON.stringify(nuevasAsignaturas)
+          );
+
+          return nuevasAsignaturas; // Actualiza el estado global de asignaturas
+        });
+        if (botonSemanalRef.current) {
+          botonSemanalRef.current.click(); // Asegúrate de que sea una función
+        }
+      }
+    }
   };
+
+  useEffect(() => {
+    if (profesorSeleccionado) {
+      const asignaturasProfesor = asignaturas.filter(
+        (asignatura) => asignatura.profesorId === profesorSeleccionado.id
+      );
+
+      // Actualizar el estado del profesor seleccionado con las nuevas asignaturas
+      setProfesorSeleccionado((prev) => {
+        if (!prev) return null;
+        return {
+          ...prev,
+          asignaturas: asignaturasProfesor,
+        };
+      });
+
+      // Llamamos a calcularTotalHoras solo cuando las asignaturas cambian
+      calcularTotalHoras();
+    }
+  }, [asignaturas, profesorSeleccionado]); // Asegúrate de incluir 'profesorSeleccionado' para evitar ciclos
 
   return (
     <div className="inicio">
@@ -99,50 +232,72 @@ const Inicio = () => {
           <p className="text_Crea_Y_Gestiona">Crea y gestiona los profesores</p>
         </div>
         <hr className="linea-gris" />
+        <button
+          className="button-dropdown"
+          onClick={() => setMostrarPopup(true)}
+        >
+          <img src={flecha} alt="flecha" className="flecha" />
+        </button>
+
         <div className="parrafosInfo">
           <div className="profesor-img">
             <img src={imgMM} alt="Profesor logo" className="profesor-logo" />
           </div>
           <div className="parrafos-contenedor">
-            <p className="profesor-nombre">{nombreUsuario}</p>
+            <p className="profesor-nombre">
+              {profesorSeleccionado?.nombre} {profesorSeleccionado?.apellido}{" "}
+              {profesorSeleccionado?.segundoApellido}
+            </p>
             <div>
               <a className="email-link" href={`mailto:${emailUsuario}`}>
-                {emailUsuario}
+                {profesorSeleccionado?.email}
               </a>
             </div>
-            <p className="tlf">{telefonoUsuario}</p>
+            <p className="tlf">{profesorSeleccionado?.telefono}</p>
           </div>
         </div>
-        <button className="editar-button">Editar</button>
         <hr className="linea-gris" />
-        <div className="container" onClick={handleSwitch}>
+        <div className="container">
           <button
+            id="semanal"
+            ref={botonSemanalRef}
             className={`btn btn-secondary btn-custom ${
               modoSemanal ? "active" : ""
             }`}
             style={{
-              backgroundColor: modoSemanal ? "transparent" : "#ffff", // Transparente si está activo, gris si no
-              color: modoSemanal ? "#6c757d" : "#000000", // Gris si está activo, negro si no
+              backgroundColor: modoSemanal ? "transparent" : "#ffff",
+              color: modoSemanal ? "#6c757d" : "#000000",
               border: "none",
             }}
-            onClick={() => setModoSemanal(!modoSemanal)} // Cambia el estado al contrario del estado actual
+            onClick={() => {
+              setModoSemanal(false);
+              calcularTotalHoras();
+            }}
+            disabled={!modoSemanal} // Desactiva el botón "Semanal" cuando `modoSemanal` es `true`
           >
             Semanal
           </button>
+
           <button
+            id="anual"
             className={`btn btn-secondary btn-custom ${
               !modoSemanal ? "active" : ""
             }`}
             style={{
-              backgroundColor: !modoSemanal ? "transparent" : "#ffff", // Transparente si está activo, gris si no
-              color: !modoSemanal ? "#6c757d" : "#000000", // Gris si está activo, negro si no
+              backgroundColor: !modoSemanal ? "transparent" : "#ffff",
+              color: !modoSemanal ? "#6c757d" : "#000000",
               border: "none",
             }}
-            onClick={() => setModoSemanal(!modoSemanal)} // Cambia el estado al contrario del estado actual
+            onClick={() => {
+              setModoSemanal(true);
+              calcularTotalHoras();
+            }}
+            disabled={modoSemanal} // Desactiva el botón "Anual" cuando `modoSemanal` es `false`
           >
             Anual
           </button>
         </div>
+
         <div id="cardsContainer" className="container mt-5">
           <Row>
             <Col className="d-flex justify-content-around">
@@ -172,19 +327,21 @@ const Inicio = () => {
           </Row>
         </div>
         <hr className="linea-gris" />
-
-        <button
-          className="boton-añadir-asignatura"
-          onClick={mostrarFormularioAgregarAsignatura}
-        >
-          <img src={plusIcono} alt="Mi Icono" className="icono-plus" />
-          <span>Añadir asignatura</span>
-        </button>
+        <div className="boton-container">
+          <button
+            className="boton-añadir-asignatura"
+            onClick={mostrarFormularioAgregarAsignatura}
+          >
+            <img src={plusIcono} alt="Mi Icono" className="icono-plus" />
+            <span>Añadir asignatura</span>
+          </button>
+        </div>
         {mostrarFormulario && (
           <FormularioAgregarAsignatura
             onClose={cerrarFormularioAgregarAsignatura}
             columnas={columnas}
             onAgregarAsignatura={handleAgregarAsignatura}
+            profesorId={profesorSeleccionado!!.id}
           />
         )}
 
@@ -201,7 +358,7 @@ const Inicio = () => {
             </tr>
           </thead>
           <tbody>
-            {asignaturas.map((asignatura, index) => (
+            {profesorSeleccionado?.asignaturas.map((asignatura, index) => (
               <tr key={index}>
                 <td>{asignatura.nombre}</td>
                 <td>{asignatura.tipo}</td>
@@ -213,7 +370,11 @@ const Inicio = () => {
                   <Button variant="light" className="btn-ver">
                     Ver
                   </Button>
-                  <Button variant="light" className="btn-editar">
+                  <Button
+                    variant="light"
+                    className="btn-editar"
+                    onClick={() => setMostrarPopup(true)}
+                  >
                     Editar
                   </Button>
                   <Button
@@ -229,6 +390,17 @@ const Inicio = () => {
           </tbody>
         </Table>
       </div>
+
+      {mostrarPopup && (
+        <Popup
+          profesores={profesores}
+          onProfesorSelect={(profesor: Profesor) => {
+            setProfesorSeleccionado(profesor);
+            setMostrarPopup(false);
+          }}
+          onClose={() => setMostrarPopup(false)}
+        />
+      )}
     </div>
   );
 };

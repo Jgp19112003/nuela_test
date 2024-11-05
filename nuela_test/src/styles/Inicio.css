@@ -1,3 +1,7 @@
+body {
+  background-color: #fafafa;
+}
+
 .inicio {
   margin: 0;
   position: absolute;
@@ -36,6 +40,7 @@
 
 .parrafosInfo {
   display: flex;
+  width: 100%;
   align-items: center;
 }
 
@@ -60,25 +65,6 @@
 .tlf {
   color: #0000009f;
   font-weight: normal;
-}
-
-.editar-button {
-  top: 20%;
-  left: 28%;
-  position: absolute;
-  width: fit-content;
-  background-color: transparent;
-  color: #635bff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 12px;
-  margin-left: 64%;
-}
-
-.editar-button:hover {
-  background-color: #f3f1f1;
 }
 
 .btn-custom {
@@ -155,18 +141,55 @@
   cursor: pointer;
 }
 
+.boton-container {
+  display: flex; /* Usar flexbox para alinear los botones */
+  justify-content: space-between; /* Distribuye el espacio entre los botones */
+  align-items: center; /* Alinea verticalmente los botones */
+  padding: 20px; /* Añade padding alrededor de los botones */
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  position: relative; /* Posición relativa para facilitar la colocación */
+}
+
 .boton-añadir-asignatura {
-  margin-top: 20px;
-  margin-left: 1314px;
-  width: fit-content;
-  background-color: #635bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-weight: medium;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+  position: absolute;
+  left: 82%;
+  width: fit-content; /* Ajusta el ancho según el contenido */
+  background-color: #635bff; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 12px 24px; /* Espaciado mejorado para un diseño más cómodo */
+  font-weight: 600; /* Grosor de fuente aumentado para mejor legibilidad */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  display: flex; /* Flex para alinear contenido */
+  align-items: center; /* Alinear verticalmente */
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2); /* Sombra para efecto de elevación */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease; /* Transiciones suaves */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse */
+.boton-añadir-asignatura:hover {
+  background-color: #4c44c9; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Agranda ligeramente el botón */
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4); /* Aumenta la sombra */
+}
+
+/* Efecto de activación */
+.boton-añadir-asignatura:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
+}
+
+/* Estilo del icono */
+.icono-plus {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  transition: filter 0.2s ease; /* Suaviza la transición del icono */
+}
+
+/* Efecto en el icono al pasar el mouse */
+.boton-añadir-asignatura:hover .icono-plus {
+  filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
 }
 
 .icono-plus {
@@ -180,9 +203,9 @@
 }
 
 .mi-tabla {
-  margin-top: 20px;
+  margin-top: 40px;
   border-color: transparent;
-  width: 94.2%; /* Ajusta el ancho de la tabla */
+  width: 94.6%; /* Ajusta el ancho de la tabla */
   border-collapse: collapse; /* Combina los bordes de las celdas */
 }
 
@@ -242,4 +265,72 @@
 .mi-tabla .btn-editar:hover,
 .mi-tabla .btn-ver:hover {
   background-color: #f3f1f1;
+}
+
+.button-dropdown {
+  width: 5%; /* Ajusta el ancho según sea necesario */
+  height: 30px; /* Ajusta la altura para un mejor espaciado */
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #eee;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+  margin-left: 715px;
+}
+
+.button-dropdown:hover {
+  transform: translateY(-3px);
+}
+
+.flecha {
+  width: 40px; /* Ajusta el tamaño de la imagen */
+  height: 30px; /* Mantiene la proporción de la imagen */
+  margin-left: 5px; /* Espacio a la izquierda de la imagen */
+  background-color: transparent;
+}
+
+.switch {
+  --false: #e81b1b; /* Color cuando el checkbox está desmarcado */
+  --true: #009068; /* Color cuando el checkbox está marcado */
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  height: 2rem;
+  width: 3.5rem;
+  background-color: #fff;
+  position: relative;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  display: block;
+  height: 1.9em;
+  width: 1.9em;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: calc(1.9em / 2 + 0.3em);
+  background-color: var(--false);
+  border-radius: 0.2em;
+  transition: 0.3s ease;
+}
+
+input[type="checkbox"]:checked::before {
+  background-color: var(--true);
+  left: calc(100% - (1.9em / 2 + 0.3em));
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+}
+
+#switch-label {
+  margin-left: 10px; /* Espaciado entre el switch y el texto */
 }

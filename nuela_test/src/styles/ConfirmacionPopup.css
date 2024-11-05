@@ -1,0 +1,39 @@
+.modal-header {
+  background-color: #f8f9fa; /* Color de fondo del encabezado */
+  border-bottom: 1px solid #dee2e6; /* Línea inferior del encabezado */
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: #343a40; /* Color del título */
+}
+
+.modal-body {
+  font-size: 1.1rem;
+  color: #000; /* Color del texto del mensaje a negro */
+}
+
+.mensaje-confirmacion {
+  color: #000; /* Asegúrate de que el texto del mensaje sea negro */
+}
+
+.modal-footer {
+  justify-content: space-between;
+}
+
+.btn-confirmar {
+  background-color: #635bff; /* Color del botón de aceptar */
+  color: #fff; /* Color del texto del botón de aceptar */
+  border: none; /* Quita el borde del botón */
+  box-shadow: none; /* Quita la sombra del botón */
+}
+
+.btn-confirmar:hover {
+  background-color: #5748e0; /* Color del botón en hover (opcional) */
+}
+
+/* Opcional: Personalizar el estado activo */
+.btn-confirmar:focus {
+  box-shadow: none; /* Elimina el borde azul de Bootstrap */
+  outline: none; /* Elimina el contorno del botón */
+}

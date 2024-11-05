@@ -7,12 +7,13 @@ import { Asignatura } from "../interfaces/Asignatura";
 interface FormularioAgregarAsignaturaProps {
   onClose: () => void;
   columnas: string[][];
-  onAgregarAsignatura: (asignatura: Asignatura) => void;
+  onAgregarAsignatura: (asignatura: Asignatura, profesorId: number) => void;
+  profesorId: number;
 }
 
 const FormularioAgregarAsignatura: React.FC<
   FormularioAgregarAsignaturaProps
-> = ({ onClose, columnas, onAgregarAsignatura }) => {
+> = ({ onClose, columnas, onAgregarAsignatura, profesorId }) => {
   const [nombre, setNombre] = useState("");
   const [tipo, setTipo] = useState("");
   const [curso, setCurso] = useState("");
@@ -25,6 +26,7 @@ const FormularioAgregarAsignatura: React.FC<
     event.preventDefault();
     if (nombre && tipo && curso && grupo && horaSemanal && espacioRegular) {
       const asignatura: Asignatura = {
+        profesorId: profesorId,
         nombre: nombre,
         tipo: tipo,
         curso: curso,
@@ -32,7 +34,11 @@ const FormularioAgregarAsignatura: React.FC<
         horaSemanal: horaSemanal,
         espacioRegular: espacioRegular,
       };
-      onAgregarAsignatura(asignatura);
+
+      // Llamar a la función para agregar la asignatura
+      onAgregarAsignatura(asignatura, profesorId);
+
+      // Cerrar el modal
       onClose();
     } else {
       setShowAlert(true);
@@ -55,14 +61,13 @@ const FormularioAgregarAsignatura: React.FC<
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Seleccione asignatura
                 </option>
                 {columnas[0].map((valor, index) => (
                   <option key={index}>{valor}</option>
                 ))}
               </Form.Control>
-
               <img src={selectImage} alt="select" className="select-icon" />
             </div>
           </Form.Group>
@@ -121,7 +126,7 @@ const FormularioAgregarAsignatura: React.FC<
             </div>
           </Form.Group>
           <Form.Group controlId="formHoraSemanal">
-            <Form.Label>Horas:</Form.Label>
+            <Form.Label>Horas (Semanales):</Form.Label>
             <div className="select-container">
               <Form.Control
                 as="select"

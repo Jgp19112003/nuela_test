@@ -1,0 +1,62 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que el pop-up esté por encima de otros elementos */
+}
+
+.popup {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px; /* Ancho del pop-up */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinear elementos en extremos opuestos */
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px; /* Espacio entre el input y el botón */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.popup-content {
+  max-height: 300px; /* Altura máxima del contenido para permitir el scroll */
+  overflow-y: auto; /* Habilitar desplazamiento */
+}
+
+.opcion-profesor {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.opcion-profesor:hover {
+  background-color: #f3f1f1;
+}
+
+.opcion-profesor img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.opcion-profesor span {
+  font-size: 16px;
+  color: #333;
+}
