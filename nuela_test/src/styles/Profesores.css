@@ -1,0 +1,135 @@
+.profesores {
+  margin: 0;
+  position: absolute;
+  left: 250px;
+  width: calc(100% - 250px);
+  background-color: #fafafa;
+  display: flex; /* Usar Flexbox para alinear horizontalmente */
+  flex-wrap: wrap; /* Permite que las cartas se envuelvan a una nueva fila si no caben */
+  justify-content: flex-start; /* Alinea las cartas a la izquierda */
+}
+.linea-gris {
+  margin-bottom: 110px;
+}
+.boton-añadir-profesor {
+  position: relative;
+  left: 1275px;
+  top: -20%;
+  width: fit-content; /* Ajusta el ancho según el contenido */
+  background-color: #635bff; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 12px 24px; /* Espaciado mejorado para un diseño más cómodo */
+  font-weight: 600; /* Grosor de fuente aumentado para mejor legibilidad */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  display: flex; /* Flex para alinear contenido */
+  align-items: center; /* Alinear verticalmente */
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2); /* Sombra para efecto de elevación */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease; /* Transiciones suaves */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse */
+.boton-añadir-profesor:hover {
+  background-color: #4c44c9; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Agranda ligeramente el botón */
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4); /* Aumenta la sombra */
+}
+
+/* Efecto de activación */
+.boton-añadir-profesor:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
+}
+
+/* Efecto en el icono al pasar el mouse */
+.boton-añadir-profesor:hover .icono-plus {
+  filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
+}
+
+.card-profesores {
+  margin: 25px;
+  margin-left: 100px;
+  width: 395px;
+  height: 200px;
+  border-radius: 15px;
+  background: lightgrey;
+  background: linear-gradient(145deg, #7a73f8, #635bff);
+  box-shadow: 2px 3px 3px #3f35ff, 2px 3px 3px #736cff;
+}
+
+.avatar {
+  margin-top: 10%;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 130px;
+  height: 130px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background-image: url("../images/MM.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+  display: inline-block;
+  vertical-align: top;
+  width: 85px;
+}
+
+.info-1,
+.info-2,
+.info-3,
+.info-4 {
+  margin: 5px;
+  margin-top: 25px;
+  text-align: center;
+  display: inline-block;
+  height: 30px;
+  width: 250%;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.info-2 {
+  margin-top: 10px;
+  height: 25px;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info-3 {
+  text-align: start;
+  margin-top: 10px;
+  height: 25px;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info-4 {
+  text-align: start;
+  margin-top: 10px;
+  height: 25px;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.boton-container {
+  width: fit-content;
+}
+
+.bin-button {
+  border-radius: 10px;
+  left: 865%;
+  top: -120%;
+  width: 42px;
+  height: 45px;
+}

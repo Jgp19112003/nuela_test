@@ -181,20 +181,9 @@ body {
   box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
 }
 
-/* Estilo del icono */
-.icono-plus {
-  margin-right: 8px; /* Espacio entre el icono y el texto */
-  transition: filter 0.2s ease; /* Suaviza la transición del icono */
-}
-
 /* Efecto en el icono al pasar el mouse */
 .boton-añadir-asignatura:hover .icono-plus {
   filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
-}
-
-.icono-plus {
-  width: 12.5px;
-  margin-right: 10px;
 }
 
 .icono-plus {

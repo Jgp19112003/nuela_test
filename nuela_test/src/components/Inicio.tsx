@@ -228,8 +228,10 @@ const Inicio = () => {
     <div className="inicio">
       <div className="info-profesor">
         <div>
-          <p className="text_Profesores">Profesores</p>
-          <p className="text_Crea_Y_Gestiona">Crea y gestiona los profesores</p>
+          <p className="text_Profesores">Inicio</p>
+          <p className="text_Crea_Y_Gestiona">
+            Gestiona las asginaturas de tus profesores
+          </p>
         </div>
         <hr className="linea-gris" />
         <button
