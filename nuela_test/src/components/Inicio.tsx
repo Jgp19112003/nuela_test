@@ -25,59 +25,22 @@ const Inicio = () => {
     const storedAsignaturas = localStorage.getItem("asignaturas");
     return storedAsignaturas ? JSON.parse(storedAsignaturas) : [];
   });
+
+  const [espacios, setEspacios] = useState(() => {
+    const storedEspacios = localStorage.getItem("espacios");
+    return storedEspacios ? JSON.parse(storedEspacios) : []; // Valor por defecto en [] si no existe
+  });
   const botonSemanalRef = useRef<HTMLButtonElement | null>(null);
 
   const [profesores, setProfesores] = useState<Profesor[]>(() => {
     const storedProfesores = localStorage.getItem("profesores");
-    return storedProfesores
-      ? JSON.parse(storedProfesores)
-      : [
-          {
-            id: 1,
-            nombre: "Juan",
-            apellido: "Pérez",
-            segundoApellido: "Gómez",
-            fechaNacimiento: "1980-05-15",
-            telefono: 645893175,
-            email: "juanperez@gmail.com",
-            asignaturas: [],
-            eventos: [
-              {
-                id: "1",
-                title: "Matemáticas",
-                start: "2024-11-05 08:00",
-                end: "2024-11-05 09:00",
-              },
-            ],
-            especialidad: "Matemáticas",
-            evaluacion: 8.5,
-            logo: imgMM,
-          },
-          {
-            id: 2,
-            nombre: "Ana",
-            apellido: "Gómez",
-            segundoApellido: "Hernández",
-            fechaNacimiento: "1985-08-20",
-            telefono: 645893175,
-            email: "anagomez@gmail.com",
-            asignaturas: [],
-            eventos: [
-              /*  {
-                id: "1",
-                title: "Lengua",
-                start: "2024-11-05 08:00",
-                end: "2024-11-05 09:00",
-              }, */
-            ],
-            especialidad: "Ciencias Naturales",
-            evaluacion: 9.0,
-            logo: imgMM,
-          },
-        ];
+    return storedProfesores ? JSON.parse(storedProfesores) : [];
   });
-  const [profesorSeleccionado, setProfesorSeleccionado] =
-    useState<Profesor | null>(null);
+  const [profesorSeleccionado, setProfesorSeleccionado] = useState(() => {
+    const storedProfesor = localStorage.getItem("profesorSeleccionado");
+    return storedProfesor ? JSON.parse(storedProfesor) : null; // Valor por defecto en null si no existe
+  });
+
   const [mostrarPopup, setMostrarPopup] = useState<boolean>(false);
 
   // Definiciones de columnas para la tabla
@@ -106,11 +69,24 @@ const Inicio = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (profesorSeleccionado) {
+      calcularTotalHoras();
+    }
+  }, [profesorSeleccionado, asignaturas, modoSemanal]); // Dependencias actualizadas
+
+  useEffect(() => {
+    const storedTotal = localStorage.getItem("totalHoras");
+    if (storedTotal) {
+      setTotalHoras(JSON.parse(storedTotal));
+    }
+  }, []);
+
   // Funciones para calcular total de horas
   const calcularTotalHoras = () => {
     let total = 0;
     if (profesorSeleccionado) {
-      profesorSeleccionado.asignaturas.forEach((asignatura) => {
+      profesorSeleccionado.asignaturas.forEach((asignatura: Asignatura) => {
         // Asegúrate de que la propiedad horaSemanal sea válida
         if (asignatura.horaSemanal) {
           total += parseFloat(asignatura.horaSemanal.replace(",", "."));
@@ -211,7 +187,7 @@ const Inicio = () => {
       );
 
       // Actualizar el estado del profesor seleccionado con las nuevas asignaturas
-      setProfesorSeleccionado((prev) => {
+      setProfesorSeleccionado((prev: Profesor) => {
         if (!prev) return null;
         return {
           ...prev,
@@ -222,7 +198,7 @@ const Inicio = () => {
       // Llamamos a calcularTotalHoras solo cuando las asignaturas cambian
       calcularTotalHoras();
     }
-  }, [asignaturas, profesorSeleccionado]); // Asegúrate de incluir 'profesorSeleccionado' para evitar ciclos
+  }, [modoSemanal]); // Asegúrate de incluir 'profesorSeleccionado' para evitar ciclos
 
   return (
     <div className="inicio">
@@ -243,21 +219,35 @@ const Inicio = () => {
 
         <div className="parrafosInfo">
           <div className="profesor-img">
-            <img src={imgMM} alt="Profesor logo" className="profesor-logo" />
+            <img
+              src={
+                profesorSeleccionado && profesores.length > 0
+                  ? profesorSeleccionado.logo
+                  : imgMM
+              }
+              alt="Profesor logo"
+              className="profesor-logo"
+            />
           </div>
           <div className="parrafos-contenedor">
             <p className="profesor-nombre">
-              {profesorSeleccionado?.nombre} {profesorSeleccionado?.apellido}{" "}
-              {profesorSeleccionado?.segundoApellido}
+              {profesorSeleccionado && profesores.length > 0
+                ? `${profesorSeleccionado.nombre} ${profesorSeleccionado.apellido} ${profesorSeleccionado.segundoApellido}`
+                : "Selecciona o crea profesores"}
             </p>
-            <div>
-              <a className="email-link" href={`mailto:${emailUsuario}`}>
-                {profesorSeleccionado?.email}
-              </a>
-            </div>
-            <p className="tlf">{profesorSeleccionado?.telefono}</p>
+            {profesorSeleccionado && profesores.length > 0 && (
+              <div>
+                <a className="email-link" href={`mailto:${emailUsuario}`}>
+                  {profesorSeleccionado.email}
+                </a>
+              </div>
+            )}
+            {profesorSeleccionado && profesores.length > 0 && (
+              <p className="tlf">{profesorSeleccionado.telefono}</p>
+            )}
           </div>
         </div>
+
         <hr className="linea-gris" />
         <div className="container">
           <button
@@ -344,6 +334,7 @@ const Inicio = () => {
             columnas={columnas}
             onAgregarAsignatura={handleAgregarAsignatura}
             profesorId={profesorSeleccionado!!.id}
+            espacios={espacios}
           />
         )}
 
@@ -360,35 +351,36 @@ const Inicio = () => {
             </tr>
           </thead>
           <tbody>
-            {profesorSeleccionado?.asignaturas.map((asignatura, index) => (
-              <tr key={index}>
-                <td>{asignatura.nombre}</td>
-                <td>{asignatura.tipo}</td>
-                <td>{asignatura.curso}</td>
-                <td>{asignatura.grupo}</td>
-                <td>{asignatura.horaSemanal}</td>
-                <td>{asignatura.espacioRegular}</td>
-                <td>
-                  <Button variant="light" className="btn-ver">
-                    Ver
-                  </Button>
-                  <Button
-                    variant="light"
-                    className="btn-editar"
-                    onClick={() => setMostrarPopup(true)}
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    variant="light"
-                    className="btn-eliminar"
-                    onClick={() => handleEliminarAsignatura(index)}
-                  >
-                    Eliminar
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {profesorSeleccionado?.asignaturas.map(
+              (asignatura: Asignatura, index: number) => (
+                <tr key={index}>
+                  <td>{asignatura.nombre}</td>
+                  <td>{asignatura.tipo}</td>
+                  <td>{asignatura.curso}</td>
+                  <td>{asignatura.grupo}</td>
+                  <td>{asignatura.horaSemanal}</td>
+                  <td>
+                    {asignatura.espacioRegular} - {asignatura.grupo}
+                  </td>
+                  <td>
+                    <Button
+                      variant="light"
+                      className="btn-editar"
+                      onClick={() => setMostrarPopup(true)}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="light"
+                      className="btn-eliminar"
+                      onClick={() => handleEliminarAsignatura(index)}
+                    >
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </Table>
       </div>

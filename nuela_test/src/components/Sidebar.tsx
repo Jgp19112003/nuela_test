@@ -46,7 +46,7 @@ function Sidebar() {
           className="colegio-avatar"
         />
         <p className="user-name">{nombreColegio}</p>
-        <img src={fotoUsuario} alt="Logo usuario" className="secondary-logo" />
+        {/* <img src={fotoUsuario} alt="Logo usuario" className="secondary-logo" /> */}
       </div>
       <div className="menu">
         <Link to="/inicio" className="menu-item-link">
@@ -71,26 +71,16 @@ function Sidebar() {
             <span className="menu-item-text">Profesores</span>
           </div>
         </Link>
-        <Link to="/familias" className="menu-item-link">
+        <Link to="/alumnos" className="menu-item-link">
           <div className="menu-item">
-            <img src={logoFamilias} alt="Familias" className="menu-item-logo" />
-            <span className="menu-item-text">Familias</span>
+            <img src={logoFamilias} alt="Alumnos" className="menu-item-logo" />
+            <span className="menu-item-text">Alumnos</span>
           </div>
         </Link>
         <Link to="/espacios" className="menu-item-link">
           <div className="menu-item">
             <img src={logoEspacios} alt="Espacios" className="menu-item-logo" />
             <span className="menu-item-text">Espacios</span>
-          </div>
-        </Link>
-        <Link to="/asignaturas" className="menu-item-link">
-          <div className="menu-item">
-            <img
-              src={logoAsignaturas}
-              alt="Asignaturas"
-              className="menu-item-logo"
-            />
-            <span className="menu-item-text">Asignaturas</span>
           </div>
         </Link>
         <Link to="/notificaciones" className="menu-item-link">

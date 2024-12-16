@@ -1,5 +1,5 @@
 export interface Asignatura {
-  profesorId: number;
+  profesorId: number | null;
   nombre: string;
   tipo: string;
   curso: string;

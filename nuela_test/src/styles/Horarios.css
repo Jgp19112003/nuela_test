@@ -79,9 +79,10 @@ body {
 }
 
 .boton-añadir-horario {
-  position: absolute;
-  left: 83.7%;
+  position: relative;
+  align-self: end;
   margin-right: 20px; /* Espacio reducido a la derecha del botón "Añadir Evento" */
+  margin-left: 84.5%;
   width: fit-content; /* Ajusta el ancho según el contenido */
   background-color: #635bff; /* Color original del botón */
   color: white;

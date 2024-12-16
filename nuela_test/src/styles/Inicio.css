@@ -22,6 +22,10 @@ body {
   margin: 0;
 }
 
+hr {
+  margin-bottom: 15px !important;
+}
+
 .linea-gris {
   border: none;
   border-top: 2px solid #ccccccd0;
@@ -30,6 +34,7 @@ body {
 }
 .profesor-logo {
   width: 120px;
+  border-radius: 20px;
 }
 
 .info-profesor {
@@ -83,7 +88,6 @@ body {
   background-color: #f3f1f1;
   border-radius: 10px;
   padding: 0;
-  margin-top: 0;
   margin-bottom: 5px;
   margin-left: 625px;
 }
@@ -181,9 +185,20 @@ body {
   box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
 }
 
+/* Estilo del icono */
+.icono-plus {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  transition: filter 0.2s ease; /* Suaviza la transición del icono */
+}
+
 /* Efecto en el icono al pasar el mouse */
 .boton-añadir-asignatura:hover .icono-plus {
   filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
+}
+
+.icono-plus {
+  width: 12.5px;
+  margin-right: 10px;
 }
 
 .icono-plus {
@@ -258,7 +273,6 @@ body {
 
 .button-dropdown {
   width: 5%; /* Ajusta el ancho según sea necesario */
-  height: 30px; /* Ajusta la altura para un mejor espaciado */
   border: none;
   outline: none;
   background-color: transparent;

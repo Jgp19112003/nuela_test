@@ -13,8 +13,8 @@
 }
 .boton-añadir-profesor {
   position: relative;
-  left: 1275px;
-  top: -20%;
+  margin-right: 90px;
+  align-self: end;
   width: fit-content; /* Ajusta el ancho según el contenido */
   background-color: #635bff; /* Color del botón */
   color: white; /* Color del texto */
@@ -50,13 +50,62 @@
 
 .card-profesores {
   margin: 25px;
-  margin-left: 100px;
-  width: 395px;
+  margin-left: 84px;
+  width: 425px;
   height: 200px;
   border-radius: 15px;
-  background: lightgrey;
-  background: linear-gradient(145deg, #7a73f8, #635bff);
+  color: white;
+  cursor: pointer; /* Añadido para que sea clickeable */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones para el hover */
+}
+
+.card-profesores:nth-child(3n + 1) {
+  background: linear-gradient(145deg, #a19cf8, #958ffb);
   box-shadow: 2px 3px 3px #3f35ff, 2px 3px 3px #736cff;
+}
+
+/* Segunda columna: Verde */
+.card-profesores:nth-child(3n + 2) {
+  background: linear-gradient(145deg, #8cd98c, #4caf50); /* Verde degradado */
+  box-shadow: 2px 3px 3px #3da035, 2px 3px 3px #66bb6a; /* Sombra verde */
+}
+/* Segunda columna: Verde */
+.card-profesores:nth-child(3n + 2):hover {
+  transform: scale(1.03); /* Agranda ligeramente la carta */
+  box-shadow: 2px 3px 3px #3da035, 2px 3px 3px #66bb6a; /* Sombra verde */
+}
+.card-profesores:nth-child(3n + 2):active {
+  transform: scale(0.95); /* Agranda ligeramente la carta */
+  box-shadow: 0px 4px 10px #3da035; /* Sombra verde */
+}
+
+/* Tercera columna: Azul */
+.card-profesores:nth-child(3n + 3) {
+  background: linear-gradient(145deg, #7ab8f8, #2196f3); /* Azul degradado */
+  box-shadow: 2px 3px 3px #1e88e5, 2px 3px 3px #42a5f5; /* Sombra azul */
+}
+
+/* Tercera columna: Azul */
+.card-profesores:nth-child(3n + 3):hover {
+  transform: scale(1.03); /* Agranda ligeramente la carta */
+  box-shadow: 2px 3px 3px #1e88e5, 2px 3px 3px #428df5; /* Sombra azul */
+}
+/* Tercera columna: Azul */
+.card-profesores:nth-child(3n + 3):active {
+  transform: scale(0.95); /* Agranda ligeramente la carta */
+  box-shadow: 0px 4px 10px #1e88e5; /* Sombra azul */
+}
+
+/* Efecto hover similar al del botón */
+.card-profesores:nth-child(3n + 1):hover {
+  transform: scale(1.03); /* Agranda ligeramente la carta */
+  box-shadow: 2px 3px 3px #3f35ff, 2px 3px 3px #736cff;
+}
+
+/* Efecto de activación al hacer clic */
+.card-profesores:nth-child(3n + 1):active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px #3f35ff; /* Reduce la sombra */
 }
 
 .avatar {
@@ -67,7 +116,6 @@
   height: 130px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
-  background-image: url("../images/MM.png");
   background-size: cover;
   background-position: center;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -77,6 +125,7 @@
   display: inline-block;
   vertical-align: top;
   width: 85px;
+  color: #ffffff;
 }
 
 .info-1,
@@ -91,9 +140,22 @@
   width: 250%;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.info-1 {
+  font-weight: bold;
+  font-size: 1.1em;
+  width: 236px;
 }
 
 .info-2 {
+  display: flex; /* Habilita Flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: start; /* Alinea el contenido al inicio (izquierda) */
+  text-align: start;
   margin-top: 10px;
   height: 25px;
   width: fit-content;
@@ -103,6 +165,9 @@
 }
 
 .info-3 {
+  display: flex; /* Habilita Flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: start; /* Alinea el contenido al inicio (izquierda) */
   text-align: start;
   margin-top: 10px;
   height: 25px;
@@ -115,21 +180,50 @@
 .info-4 {
   text-align: start;
   margin-top: 10px;
-  height: 25px;
+  height: fit-content;
   width: fit-content;
   border-radius: 3px;
   padding-left: 5px;
   padding-right: 5px;
+  white-space: nowrap; /* Evita el salto de línea */
 }
 
-.boton-container {
-  width: fit-content;
+.boton-container-p {
+  height: 33px; /* Ocupa todo el ancho del contenedor */
+  width: 33px; /* Ocupa todo el ancho del contenedor */
 }
 
-.bin-button {
-  border-radius: 10px;
-  left: 865%;
-  top: -120%;
-  width: 42px;
-  height: 45px;
+.bin-button-p {
+  position: relative;
+  left: 1150%;
+  top: -55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 5px;
+  background-color: rgb(255, 95, 95);
+  cursor: pointer;
+  border: 3px solid rgb(234, 109, 109);
+  transition-duration: 0.3s;
+}
+
+.bin-bottom-p {
+  width: 15px;
+}
+.bin-top-p {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+}
+.bin-button-p:hover .bin-top-p {
+  transform: rotate(45deg);
+}
+.bin-button-p:hover {
+  background-color: rgb(255, 0, 0);
+}
+.bin-button-p:active {
+  transform: scale(0.9);
 }

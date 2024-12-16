@@ -72,29 +72,32 @@ const Horarios = () => {
   }, [profesorSeleccionado]);
 
   useEffect(() => {
+    // Primero, obtener el valor guardado del profesor seleccionado desde localStorage
     const profesorGuardado = localStorage.getItem("profesorSeleccionado");
+
     if (profesorGuardado) {
       const profesor = JSON.parse(profesorGuardado);
-      setProfesorSeleccionado(
-        profesores.find((p) => p.id === profesor.id) || null
-      );
+
+      // Si el profesor está guardado y existe en el estado de profesores
+      const profesorEncontrado = profesores.find((p) => p.id === profesor.id);
+
+      // Si se encuentra un profesor coincidente, lo asignamos a `profesorSeleccionado`
+      if (profesorEncontrado) {
+        setProfesorSeleccionado(profesorEncontrado);
+      }
     }
-  }, [profesores]);
+  }, [profesores]); // Dependencia en 'profesores' para que se ejecute cuando se actualicen los profesores
 
   // Nuevo useEffect para cargar eventos del profesor seleccionado
   useEffect(() => {
     if (profesorSeleccionado && profesorSeleccionado.eventos) {
       // Asegúrate de que los eventos están en el formato adecuado para CalendarApp
-      console.log(profesorSeleccionado);
-
       const eventosDelProfesor = profesorSeleccionado.eventos.map((evento) => ({
         id: evento.id,
         title: evento.title,
         start: evento.start,
         end: evento.end,
       }));
-      console.log(eventosDelProfesor);
-
       setEventos(eventosDelProfesor);
     }
   }, [profesorSeleccionado]);
@@ -154,7 +157,7 @@ const Horarios = () => {
 
       eventosRecurrentes.push({
         id: currentId.toString(),
-        title: asignatura.nombre,
+        title: asignatura.nombre + " - " + asignatura.espacioRegular,
         start: formatFecha(start),
         end: formatFecha(end),
       });
@@ -163,8 +166,6 @@ const Horarios = () => {
       // Incrementar en una semana para ir al mismo día de la semana siguiente
       start.setDate(start.getDate() + 7);
     }
-
-    console.log(eventosRecurrentes);
 
     return eventosRecurrentes; // Devuelve el array de eventos generados
   };
@@ -265,7 +266,11 @@ const Horarios = () => {
 
         <div className="parrafosInfo">
           <div className="profesor-img">
-            <img src={imgMM} alt="Profesor logo" className="profesor-logo" />
+            <img
+              src={profesorSeleccionado?.logo}
+              alt="Profesor logo"
+              className="profesor-logo"
+            />
           </div>
           <div className="parrafos-contenedor">
             <p className="profesor-nombre">

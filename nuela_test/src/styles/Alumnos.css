@@ -1,0 +1,148 @@
+.card-alumnos {
+  margin: 25px;
+  margin-left: 84px;
+  width: 425px;
+  height: 200px;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer; /* Añadido para que sea clickeable */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Transiciones para el hover */
+  background: linear-gradient(145deg, #3ab4e8, #41bcd2);
+  box-shadow: 2px 3px 3px #1b9cd3, 2px 3px 3px #319aad;
+}
+
+/* Efecto hover similar al del botón */
+.card-alumnos:hover {
+  transform: scale(1.03); /* Agranda ligeramente la carta */
+  box-shadow: 2px 3px 3px #3ab4e8, 2px 3px 3px #41bcd2;
+}
+
+/* Efecto de activación al hacer clic */
+.card-alumnos:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px #44b5e6; /* Reduce la sombra */
+}
+
+.avatar-alumno {
+  margin-top: 10%;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 130px;
+  height: 130px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-alumno {
+  display: inline-block;
+  vertical-align: top;
+  width: 85px;
+  color: #ffffff;
+}
+
+.info-alumno-1,
+.info-alumno-2,
+.info-alumno-3,
+.info-alumno-4 {
+  margin: 5px;
+  margin-top: 25px;
+  text-align: center;
+  display: inline-block;
+  height: 30px;
+  width: 250%;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.info-alumno-1 {
+  font-weight: bold;
+  font-size: 1.1em;
+  width: 236px;
+}
+
+.info-alumno-2 {
+  display: flex; /* Habilita Flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: start; /* Alinea el contenido al inicio (izquierda) */
+  text-align: start;
+  margin-top: 10px;
+  height: 25px;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info-alumno-3 {
+  display: flex; /* Habilita Flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: start; /* Alinea el contenido al inicio (izquierda) */
+  text-align: start;
+  margin-top: 10px;
+  height: 25px;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info-alumno-4 {
+  text-align: start;
+  margin-top: 10px;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: nowrap; /* Evita el salto de línea */
+}
+
+.boton-container-a {
+  height: 33px; /* Ocupa todo el ancho del contenedor */
+  width: 33px; /* Ocupa todo el ancho del contenedor */
+}
+
+.bin-button-a {
+  position: relative;
+  left: 1150%;
+  top: -55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 5px;
+  background-color: rgb(255, 95, 95);
+  cursor: pointer;
+  border: 3px solid rgb(234, 109, 109);
+  transition-duration: 0.3s;
+}
+
+.bin-bottom-a {
+  width: 15px;
+}
+
+.bin-top-a {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+}
+
+.bin-button-a:hover .bin-top-a {
+  transform: rotate(45deg);
+}
+
+.bin-button-a:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.bin-button-a:active {
+  transform: scale(0.9);
+}

@@ -1,0 +1,45 @@
+.boton-container-espacio {
+  display: flex; /* Usar flexbox para alinear los botones */
+  justify-content: space-between; /* Distribuye el espacio entre los botones */
+  align-items: center; /* Alinea verticalmente los botones */
+  padding: 20px; /* Añade padding alrededor de los botones */
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  position: relative; /* Posición relativa para facilitar la colocación */
+}
+
+.boton-añadir-espacio {
+  position: absolute;
+  left: 83.3%;
+  width: fit-content; /* Ajusta el ancho según el contenido */
+  background-color: #635bff; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 12px 24px; /* Espaciado mejorado para un diseño más cómodo */
+  font-weight: 600; /* Grosor de fuente aumentado para mejor legibilidad */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  display: flex; /* Flex para alinear contenido */
+  align-items: center; /* Alinear verticalmente */
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2); /* Sombra para efecto de elevación */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease; /* Transiciones suaves */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  margin-top: 25px;
+}
+
+/* Efecto al pasar el mouse */
+.boton-añadir-espacio:hover {
+  background-color: #4c44c9; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Agranda ligeramente el botón */
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4); /* Aumenta la sombra */
+}
+
+/* Efecto de activación */
+.boton-añadir-espacio:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
+}
+
+/* Efecto en el icono al pasar el mouse */
+.boton-añadir-espacio:hover .icono-plus {
+  filter: brightness(1.1); /* Aumenta ligeramente el brillo del icono */
+}

@@ -50,7 +50,14 @@ const FormularioAgregarHorario: React.FC<FormularioAgregarHorarioProps> = ({
       </Modal.Header>
 
       <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "stretch",
+          }}
+        >
           <Form.Group controlId="formDia">
             <Form.Label>Día:</Form.Label>
             <div className="select-container">
@@ -132,9 +139,17 @@ const FormularioAgregarHorario: React.FC<FormularioAgregarHorarioProps> = ({
             </div>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Añadir Horario
-          </Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "15px",
+            }}
+          >
+            <Button variant="primary" type="submit">
+              Añadir Horario
+            </Button>
+          </div>
         </Form>
       </Modal.Body>
 

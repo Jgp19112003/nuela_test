@@ -29,6 +29,7 @@ const Popup: React.FC<PopupProps> = ({
   // Llamar a onProfesorSelect con el profesor seleccionado y cerrar el pop-up
   const handleProfesorClick = (profesor: Profesor) => {
     onProfesorSelect(profesor);
+    localStorage.setItem("profesorSeleccionado", JSON.stringify(profesor));
     onClose();
   };
 

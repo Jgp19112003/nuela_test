@@ -1,0 +1,334 @@
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 1506px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Color de fondo del formulario */
+  border: 1px solid #ccc; /* Borde alrededor del formulario */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.btn-eliminar {
+  margin-left: 20px;
+  font-size: 15px;
+  color: red !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.btn-eliminar:hover {
+  background-color: #f3f1f1 !important;
+}
+
+.emailForm input,
+.emailForm textarea {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.emailForm button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.emailForm button:hover {
+  background-color: #0056b3;
+}
+
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.persona-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Estilo para los correos electrónicos en la lista de destinatarios */
+.email-list-item {
+  font-weight: normal; /* Asegura que los correos no estén en negrita */
+  font-size: 1rem; /* Tamaño de fuente normal */
+}
+
+/* Si usas un <li> directamente para mostrar los correos, puedes hacer esto */
+ul li {
+  font-weight: normal; /* Asegura que los correos no estén en negrita */
+}
+
+.remove-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.remove-btn:hover {
+  background-color: darkred;
+}
+
+.boton-notificacion {
+  background-color: #635bff !important; /* Color morado del botón con !important para asegurarnos que no se sobrescriba */
+  color: white !important; /* Aseguramos que el texto sea blanco */
+  border: none; /* Sin borde */
+  padding: 12px 24px; /* Espaciado mejorado para un diseño más cómodo */
+  font-weight: 600; /* Grosor de fuente aumentado para mejor legibilidad */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  display: flex; /* Flex para alinear contenido */
+  align-items: center; /* Alinear verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2); /* Sombra para efecto de elevación */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease; /* Transiciones suaves */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  margin-top: 20px; /* Añadimos un margen superior para separar el botón del resto */
+}
+
+.boton-notificacion:hover {
+  background-color: #4c44c9 !important; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Agranda ligeramente el botón */
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4); /* Aumenta la sombra */
+}
+
+.boton-notificacion:active {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Reduce la sombra */
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Centra los botones */
+  margin-left: 20px;
+}
+
+.button-container button {
+  width: 85px;
+  height: fit-content;
+  padding: 10px 15px;
+  background-color: #28a745; /* Color verde para los botones */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #218838;
+}
+
+.select-container .dropdown {
+  font-weight: normal; /* Asegúrate de que el texto no esté en negrita */
+  padding: 8px 12px; /* Ajusta el padding para una mejor apariencia */
+  border: 1px solid #ccc; /* Borde sutil para mejorar la apariencia */
+  border-radius: 8px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cambia el cursor cuando el mouse esté sobre el select */
+}
+
+.select-container .dropdown:hover {
+  background-color: #f0f0f0; /* Añade un color de fondo cuando el mouse pasa por encima */
+}
+
+.checkbox-container {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  margin-right: 5px;
+}
+
+/* Estilos para los checkboxes clásicos */
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  cursor: pointer;
+  appearance: auto; /* Asegura el estilo clásico del checkbox */
+}
+
+.checkbox-label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+/* Estilo del contenedor select */
+.select-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.dropdown {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.persona-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.select-container .button:hover {
+  background-color: #4c44c9; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2); /* Sombra para un efecto de elevación */
+}
+
+.select-container .button.selected {
+  background-color: #4c44c9; /* Color morado más oscuro cuando está seleccionado */
+}
+
+.select-container .button {
+  background-color: #635bff !important; /* Color morado igual al botón de notificación */
+  color: white !important; /* Texto blanco */
+  border: none;
+  font-weight: 200;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2);
+}
+.boton-notificacion {
+  background-color: #635bff !important; /* Color morado */
+  color: white !important;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(99, 91, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.boton-notificacion:hover {
+  background-color: #4c44c9 !important; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.4);
+}
+
+.boton-notificacion:active {
+  transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.2);
+}
+
+.alert-success {
+  width: 1505px;
+  height: 50px;
+  background-color: #28a745; /* verde */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+}
